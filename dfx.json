@@ -1,0 +1,26 @@
+{
+  "canisters": {
+    "TideNeuron_backend": {
+      "main": "src/TideNeuron_backend/main.mo",
+      "type": "motoko"
+    },
+    "TideNeuron_frontend": {
+      "dependencies": [
+        "TideNeuron_backend"
+      ],
+      "source": [
+        "src/TideNeuron_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "TideNeuron_frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
