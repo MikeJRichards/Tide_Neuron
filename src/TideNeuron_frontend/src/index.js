@@ -60,7 +60,7 @@ document.getElementById('refreshBalances').addEventListener("click", async () =>
 });
 
 document.getElementById("cyclicalStaking").addEventListener("click", async () => {
-  var tdnAmount = Number(document.getElementById('tdn-amount').value);
+  var tdnAmount = Number(document.getElementById('tdn-amount').value*100000000);
   var tdnBalance = await actor.tdnBalanceOfUser();
   console.log(typeof tdnAmount);
   if(tdnAmount < tdnBalance && tdnAmount > 0 && Number.isInteger(tdnAmount)) {

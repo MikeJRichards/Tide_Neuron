@@ -124,7 +124,7 @@ actor {
     public func icpSupplyToDisplay (): async Text {
         let balance: Nat = await icp.icrc1_total_supply();
         var no :Float= Float.fromInt(balance);
-        no := no/10000000;
+        no := no/100000000;
         return Float.toText(no) # " ICP";
     };
 
@@ -147,7 +147,7 @@ actor {
         };
         let balance: Nat = await icp.icrc1_balance_of(userAccount);
         var no :Float= Float.fromInt(balance);
-        no := no/10000000;
+        no := no/100000000;
         return Float.toText(no) # " ICP";
     };
 
@@ -162,7 +162,7 @@ actor {
     public func tdnSupplyToDisplay (): async Text {
         let balance: Nat = await tdn.icrc1_total_supply();
         var no :Float= Float.fromInt(balance);
-        no := no/10000000;
+        no := no/100000000;
         return Float.toText(no) # " TDN";
     };
 
@@ -185,7 +185,7 @@ actor {
         };
         let balance: Nat = await tdn.icrc1_balance_of(userAccount);
         var no :Float= Float.fromInt(balance);
-        no := no/10000000;
+        no := no/100000000;
         return Float.toText(no) # " TDN";
     };
 
@@ -208,7 +208,7 @@ actor {
      public func tdxSupplyToDisplay (): async Text {
         let balance: Nat = await tdx.icrc1_total_supply();
         var no :Float= Float.fromInt(balance);
-        no := no/10000000;
+        no := no/100000000;
         return Float.toText(no) # " TDX";
     };
 
@@ -231,7 +231,7 @@ actor {
         };
         let balance: Nat = await tdx.icrc1_balance_of(userAccount);
         var no :Float= Float.fromInt(balance);
-        no := no/10000000;
+        no := no/100000000;
         return Float.toText(no) # " TDX";
     };
 
