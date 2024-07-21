@@ -1,0 +1,391 @@
+body {
+    font-family: 'Roboto Slab', serif; /* Use Roboto Slab font */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+.container {
+    width: 100%; /* Full width */
+    margin: 0 auto;
+    padding: 0; /* Removed padding */
+    max-width: 1200px; /* Optional: Set a max-width for better control */
+}
+
+.header, .hero, .cta, .intro-section, .tokens, .mission {
+    padding: 20px 0;
+}
+
+/* Header Styles */
+.header {
+    background-color: #050E1F;
+    color: #FFFFFF;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    padding: 10px 0;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .logo {
+    display: flex;
+    align-items: center;
+}
+
+.header .logo img {
+    max-height: 50px;
+    margin-right: 10px;
+}
+
+.header .title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.header .nav a {
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.header .nav a:hover {
+    background-color:#4A99E5;
+}
+
+.header .nav .login-button {
+    background-color: #4A99E5;
+    color: #fff;
+}
+
+.header .nav .login-button:hover {
+    background-color: #4A99E5;
+}
+
+/* Hero Section Styles */
+.hero {
+    margin-top: 70px;
+    position: relative;
+    text-align: center;
+    color: #FFFFFF;
+    width: 100%; /* Full width */
+    padding: 0; /* Remove default padding */
+}
+
+.hero .hero-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.hero .hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.hero .central-logo {
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+/* Call to Action Section Styles */
+.cta {
+    background-color: #050E1F;
+    color: #fff;
+    text-align: center;
+    padding: 80px 20px; /* Increased padding for height */
+}
+
+#cta-heading {
+    font-size: 5em; /* Increased font size */
+    font-family: 'Roboto Slab', serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    color: #fff;
+    text-align: center; /* Center text alignment */
+    line-height: 1.2; /* Line height for spacing */
+}
+
+#cta-heading .line-break {
+    display: block; /* Display each line as a block */
+}
+
+#fair {
+    color: #4A99E5;
+}
+
+/* Intro and Mission Section Styles */
+.intro-mission-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    justify-content: space-between;
+    padding: 0; /* Removed padding */
+    background-color: #FFFFFF; /* Added white background */
+    margin-top: 20px; /* Added margin on top */
+}
+
+.intro, .mission-content {
+    background-color:#4A99E5;
+    color: #fff;
+    text-align: center;
+    padding: 20px; /* Added padding */
+    margin-bottom: 20px; /* Added bottom margin for spacing */
+}
+
+.mission-content {
+    background-color: #050E1F;
+    text-align: left;
+}
+
+#intro-text {
+    font-size: 2em; /* Increased font size */
+    font-weight: bold; /* Bold text */
+    margin: 0; /* Removed margin */
+    color: #050E1F; /* Dark text color */
+    padding: 20px; /* Added padding for content spacing */
+    border-style: none solid none solid;
+    border-color:#FFFFFF;
+    border-width: 10px; /* Adjust the width of the borders */
+}
+
+.intro .button {
+    padding: 15px 30px;
+    background-color: #FFFFFF;
+    color: #4A99E1;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 20px 0; /* Added margin for spacing */
+    font-size: 1.2em; /* Increased font size */
+}
+
+.intro .button:hover {
+    background-color: #FFFFFF;
+}
+
+.mission-content h2 {
+    font-size: 2.2em; /* Increased font size */
+    margin-bottom: 10px;
+}
+
+.mission-content p {
+    font-size: 1.4em; /* Increased font size */
+    margin: 0; /* Removed margin */
+}
+
+/* Tokens Section Styles */
+.tokens {
+    background-color: #FFFFFF;
+    color: #050E1F;
+    text-align: center;
+    padding: 20px 20px;
+}
+
+.tokens .container {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    justify-content: space-between; /* Ensure items are evenly spaced */
+}
+
+.token-wrapper {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    justify-content: space-between; /* Adjust tokens to sit side by side */
+    width: 100%; /* Ensure wrapper takes full width */
+}
+
+.token {
+    background-color: #fff;
+    color: #050E1F;
+    padding: 20px;
+    border: 2px solid #4A99E1;
+    border-radius: 10px;
+    margin: 10px 0; /* Adjusted margin for spacing */
+    text-align: left;
+    flex: 1 1 100%; /* Flex to ensure full width on small screens */
+}
+
+.token h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #050E1F;
+}
+
+.token ul {
+    padding-left: 20px;
+    list-style-type: disc;
+}
+
+.token ul li {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.token .button {
+    padding: 10px 20px;
+    background-color: #4A99E1;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 1em;
+    margin: 20px 0 0 0; /* Added margin for spacing */
+}
+
+.token .button:hover {
+    background-color: #4A99E1;
+}
+
+.balances {
+    margin-top: 70px; /* Offset for fixed header */
+    display: flex;
+    flex-direction: column; /* Stack vertically */
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 50%; /* Left half of the screen */
+}
+
+.balance-card {
+    background-color: #fff;
+    color: #050E1F;
+    padding: 20px;
+    border: 2px solid #4A99E1;
+    border-radius: 10px;
+    margin: 10px 0;
+    text-align: center;
+    width: 100%; /* Full width of the container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.balance-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.balance-card p {
+    font-size: 1.2em;
+    margin: 0;
+}
+
+/* Staking Section Styles */
+.staking-section {
+    display: flex;
+    flex-direction: column; /* Stack vertically */
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 90px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 50%; /* Right half of the screen */
+}
+
+.staking-section .staking-input {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.staking-section .staking-input input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #4A99E1;
+    font-size: 1em;
+}
+
+.staking-section .staking-button {
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #4A99E1;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 20px;
+}
+
+.staking-section .staking-button:hover {
+    background-color: #336699;
+}
+
+.staking-section .staking-image {
+    width: 100%;
+    text-align: center;
+}
+
+.staking-section .staking-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .balances {
+        width: 100%; /* Full width on smaller screens */
+    }
+
+    .balance-card {
+        width: 100%; /* Full width on smaller screens */
+    }
+
+    .staking-section {
+        width: 100%; /* Full width on smaller screens */
+    }
+
+    .staking-section .staking-input,
+    .staking-section .staking-button,
+    .staking-section .staking-image {
+        margin: 10px 0;
+    }
+
+    .staking-section .staking-image {
+        text-align: center;
+    }
+}
+
+/* Responsive adjustments for fonts */
+@media (max-width: 768px) {
+    #cta-heading {
+        font-size: 3em; /* Decreased font size */
+    }
+
+    #intro-text {
+        font-size: 1.5em; /* Decreased font size */
+    }
+
+    .mission-content h2 {
+        font-size: 1.8em; /* Decreased font size */
+    }
+
+    .mission-content p {
+        font-size: 1.2em; /* Decreased font size */
+    }
+
+    .token h3 {
+        font-size: 1.2em; /* Decreased font size */
+    }
+
+    .token ul li {
+        font-size: 1em; /* Decreased font size */
+    }
+}

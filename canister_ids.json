@@ -1,0 +1,14 @@
+{
+  "TDN_token": {
+    "ic": "47tcn-laaaa-aaaas-aabeq-cai"
+  },
+  "TDX_token": {
+    "ic": "4ysez-gyaaa-aaaas-aabea-cai"
+  },
+  "TideNeuron_backend": {
+    "ic": "5s5gd-eiaaa-aaaas-aabda-cai"
+  },
+  "TideNeuron_frontend": {
+    "ic": "5v4ax-jqaaa-aaaas-aabdq-cai"
+  }
+}

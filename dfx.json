@@ -4,23 +4,34 @@
       "main": "src/TideNeuron_backend/main.mo",
       "type": "motoko"
     },
+    "TDN_token": {
+      "main": "src/TDN_token/main.mo",
+      "type": "motoko"
+    },
+    "TDX_token": {
+      "main": "src/TDX_token/main.mo",
+      "type": "motoko"
+    },
+    
     "TideNeuron_frontend": {
       "dependencies": [
         "TideNeuron_backend"
       ],
+      "frontend": {
+        "entrypoint": "src/TideNeuron_frontend/src/index.html"
+      },
       "source": [
-        "src/TideNeuron_frontend/dist"
+        "src/TideNeuron_frontend/assets",
+        "dist/TideNeuron_frontend/"
       ],
-      "type": "assets",
-      "workspace": "TideNeuron_frontend"
+      "type": "assets"
     }
   },
-  "defaults": {
-    "build": {
-      "args": "",
-      "packtool": ""
+ "networks": {
+    "local": {
+      "bind": "127.0.0.1:8000",
+      "type": "ephemeral"
     }
   },
-  "output_env_file": ".env",
   "version": 1
 }

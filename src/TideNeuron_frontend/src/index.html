@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TideNeuron</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="Icon_logo_trans.png" alt="TideNeuron Logo" class="d-inline-block align-top" style="height: 50px;">
+                    <img src="Name_logo_trans.png" alt="TideNeuron Logo" class="d-inline-block align-top" style="height: 50px;">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Changing Tides</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Cyclical Staking</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Governance</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link login-button" id="loginButton" href="#">Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <img src="wave.jpg" alt="Wave Image" class="hero-image">
+        <div class="hero-content">
+            <img src="logo_for_hero.png" alt="Central Logo" class="central-logo">
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h1 id="cta-heading">
+                Turning the Tide 
+                <span class="line-break">Towards <span id="fair">Fair</span> Investing</span>
+            </h1>
+        </div>
+    </section>
+
+    <section class="intro-mission-container">
+        <div class="intro col-12 col-md-6">
+            <div class="container">
+                <p id="intro-text">Welcome to TideNeuron, where innovation meets opportunity in cryptocurrency. Maximize your ICP staking rewards with our TDN token. Using algorithmic mechanisms, we create controlled volatility, inspired by the natural ebb and flow of the sea. Optimize your investments with TideNeuron.</p>
+                <button class="button">Whitepaper</button>
+            </div>
+        </div>
+        <div class="mission-content col-12 col-md-6">
+            <h2 id="mission-heading">Mission Statement</h2>
+            <p id="mission-text">“At TideNeuron, our mission is to protect smaller investors from the negative impacts of whales and sharks, and to empower them with the ability to influence and manipulate market cycles. We also aim to enable investors to access high 8-year ICP staking rewards by staking TDN, thereby growing their ICP holdings. By leveraging innovative staking and reward mechanisms, we ensure that every investor, regardless of their stake size, can participate in market movements on an equal footing, fostering a fairer and more balanced market environment.”</p>
+        </div>
+    </section>
+
+    <section class="tokens">
+        <div class="container">
+            <div class="token-wrapper">
+                <div class="token col-12 col-md-6">
+                    <h3>TDN</h3>
+                    <ul>
+                        <li>Governance token.</li>
+                        <li>Staked in the SNS.</li>
+                        <li>ICP staking rewards.</li>
+                        <li>Staked in cyclical staking mechanism.</li>
+                        <li>Used to influence token supply.</li>
+                    </ul>
+                    <button class="button" data-toggle="modal" data-target="#stakeTDNModal">Stake TDN</button>
+                </div>
+                <div class="token col-12 col-md-6">
+                    <h3>TDX</h3>
+                    <ul>
+                        <li>ICP staking rewards.</li>
+                        <li>Essential in the cyclical staking mechanism.</li>
+                        <li>Used to influence token supply.</li>
+                    </ul>
+                    <button class="button">Stake TDX</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stake TDN Modal -->
+    <div class="modal fade" id="stakeTDNModal" tabindex="-1" role="dialog" aria-labelledby="stakeTDNModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="stakeTDNModalLabel">Stake TDN</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Stake TDN content goes here -->
+                    <p>Stake TDN content...</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container d-flex">
+        
+        <section class="balances">
+            <p id="userPrincipal"></p>
+            <button class="staking-button" id="refreshBalances">Refresh Balances</button>
+            <div class="balance-card">
+                <h3>TDN Total Supply</h3>
+                <p id="TDNSupply">0 TDN</p>
+            </div>
+            <div class="balance-card">
+                <h3>TDX Total Supply</h3>
+                <p id="TDXSupply">0 TDX</p>
+            </div>
+            <div class="balance-card">
+                <h3>TDN Balance</h3>
+                <p id="TDNBalance">0 TDN</p>
+            </div>
+            <div class="balance-card">
+                <h3>ICP Balance</h3>
+                <p id="ICPBalance">0 ICP</p>
+            </div>
+            <div class="balance-card">
+                <h3>TDX Balance</h3>
+                <p id="TDXBalance">0 TDX</p>
+            </div>
+        </section>
+
+        <section class="staking-section">
+            <div class="staking-image">
+                <h1>Cyclical Staking</h1>
+                <img src="staking_process.png" alt="Process Explanation">
+                <div class="staking-input">
+                    <input type="number" id="tdn-amount" placeholder="Enter TDN amount to stake">
+                </div>
+                <button class="staking-button" id="cyclicalStaking">Stake TDN</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

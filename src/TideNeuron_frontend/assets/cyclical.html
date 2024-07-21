@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TideNeuron</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .balances {
+            margin-top: 70px; /* Offset for fixed header */
+            display: flex;
+            flex-direction: column; /* Stack vertically */
+            justify-content: flex-start;
+            align-items: flex-start;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 50%; /* Left half of the screen */
+        }
+
+        .balance-card {
+            background-color: #fff;
+            color: #050E1F;
+            padding: 20px;
+            border: 2px solid #4A99E1;
+            border-radius: 10px;
+            margin: 10px 0;
+            text-align: center;
+            width: 100%; /* Full width of the container */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .balance-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .balance-card p {
+            font-size: 1.2em;
+            margin: 0;
+        }
+
+        /* Staking Section Styles */
+        .staking-section {
+            display: flex;
+            flex-direction: column; /* Stack vertically */
+            align-items: center;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 90px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 50%; /* Right half of the screen */
+        }
+
+        .staking-section .staking-input {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .staking-section .staking-input input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 2px solid #4A99E1;
+            font-size: 1em;
+        }
+
+        .staking-section .staking-button {
+            width: 100%;
+            padding: 10px 20px;
+            background-color: #4A99E1;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .staking-section .staking-button:hover {
+            background-color: #336699;
+        }
+
+        .staking-section .staking-image {
+            width: 100%;
+            text-align: center;
+        }
+
+        .staking-section .staking-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .balances {
+                width: 100%; /* Full width on smaller screens */
+            }
+
+            .balance-card {
+                width: 100%; /* Full width on smaller screens */
+            }
+
+            .staking-section {
+                width: 100%; /* Full width on smaller screens */
+            }
+
+            .staking-section .staking-input,
+            .staking-section .staking-button,
+            .staking-section .staking-image {
+                margin: 10px 0;
+            }
+
+            .staking-section .staking-image {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="Icon_logo_trans.png" alt="TideNeuron Logo" class="d-inline-block align-top" style="height: 50px;">
+                    <img src="Name_logo_trans.png" alt="TideNeuron Logo" class="d-inline-block align-top" style="height: 50px;">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Changing Tides</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Cyclical Staking</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Governance</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link login-button" id="loginButton" href="#">Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container d-flex">
+        <section class="balances">
+            <div class="balance-card">
+                <h3>ICP Balance</h3>
+                <p>1000 ICP</p>
+            </div>
+            <div class="balance-card">
+                <h3>TDX Balance</h3>
+                <p>500 TDX</p>
+            </div>
+            <div class="balance-card">
+                <h3>TDN Balance</h3>
+                <p>200 TDN</p>
+            </div>
+            <div class="balance-card">
+                <h3>TDN Total Supply</h3>
+                <p>10000 TDN</p>
+            </div>
+            <div class="balance-card">
+                <h3>TDX Total Supply</h3>
+                <p>8000 TDX</p>
+            </div>
+        </section>
+
+        <section class="staking-section">
+            <div class="staking-image">
+                <h1>Cyclical Staking</h1>
+                <img src="staking_process.png" alt="Process Explanation">
+                <div class="staking-input">
+                    <input type="number" placeholder="Enter TDN amount to stake">
+                </div>
+                <button class="staking-button">Stake TDN</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
