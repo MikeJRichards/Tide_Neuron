@@ -40,31 +40,33 @@ async function handleAuthenticated(authClient) {
   actor = Actor.createActor(idlFactory, { agent, canisterId });
 
   // Update the UI with the authenticated principal
-  const principal = identity.getPrincipal().toText();
-  const divisable = 100000000;
-  document.getElementById("loginButton").style.display = "none";
+  //const principal = identity.getPrincipal().toText();
+  //document.getElementById("loginButton").style.display = "none";
+  //document.getElementById("cyclicalStakingNav").style.display = "none";
   document.getElementById("userPrincipal").innerText ="User Principal:" + await actor.getUserPrincipal();
-  document.getElementById("TDNSupply").innerText = await actor.tdnSupply() /// divisable + " TDN";
-  document.getElementById("TDNBalance").innerText = await actor.tdnBalanceOfUser()// / divisable + " TDN";
-  document.getElementById("TDXSupply").innerText = await actor.tdxSupply() /// divisable + " TDX";
-  document.getElementById("TDXBalance").innerText = await actor.tdxBalanceOfUser(); /// divisable + " TDX";
-  document.getElementById("ICPBalance").innerText = await actor.icpBalanceOfUser() /// divisable + " ICP";
+  document.getElementById("TDNSupply").innerText = await actor.tdnSupplyToDisplay();
+  document.getElementById("TDNBalance").innerText = await actor.tdnBalanceOfUserToDisplay();
+  document.getElementById("TDXSupply").innerText = await actor.tdxSupplyToDisplay();
+  document.getElementById("TDXBalance").innerText = await actor.tdxBalanceOfUserToDisplay();
+  document.getElementById("ICPBalance").innerText = await actor.icpBalanceOfUserToDisplay();
 };
 
 document.getElementById('refreshBalances').addEventListener("click", async () => {
-  document.getElementById("TDXBalance").innerText = await actor.tdxBalanceOfUser(); /// divisable + " TDX";
-  document.getElementById("TDNBalance").innerText = await actor.tdnBalanceOfUser() /// divisable + " TDN";
-  document.getElementById("TDNSupply").innerText = await actor.tdnSupply() /// divisable + " TDN";
-  document.getElementById("TDXSupply").innerText = await actor.tdxSupply() /// divisable + " TDX";
-  document.getElementById("ICPBalance").innerText = await actor.icpBalanceOfUser() /// divisable + " ICP";  
+  document.getElementById("TDXBalance").innerText = await actor.tdxBalanceOfUserToDisplay();
+  document.getElementById("TDNBalance").innerText = await actor.tdnBalanceOfUserToDisplay();
+  document.getElementById("TDNSupply").innerText = await actor.tdnSupplyToDisplay();
+  document.getElementById("TDXSupply").innerText = await actor.tdxSupplyToDisplay();
+  document.getElementById("ICPBalance").innerText = await actor.icpBalanceOfUserToDisplay();  
 });
 
 document.getElementById("cyclicalStaking").addEventListener("click", async () => {
-  var tdnAmount = document.getElementById('tdn-amount').value;
+  var tdnAmount = Number(document.getElementById('tdn-amount').value);
   var tdnBalance = await actor.tdnBalanceOfUser();
-  if(tdnAmount < tdnBalance & tdnAmount > 0) {
+  console.log(typeof tdnAmount);
+  if(tdnAmount < tdnBalance && tdnAmount > 0 && Number.isInteger(tdnAmount)) {
       alert('Staking ' + tdnAmount + ' TDN');
-      await actor.cyclicalStaking(tdnAmount)
+      var result = await actor.cyclicalStaking(tdnAmount)
+      console.log(result)
       // Here, you can add the logic for the cyclical staking process
       // For example, make an API call to your backend or smart contract
   } else {

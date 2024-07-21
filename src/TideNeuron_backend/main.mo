@@ -3,6 +3,7 @@ import Principal "mo:base/Principal";
 import Result "mo:base/Result";
 //import Time "mo:base/Time";
 import Nat "mo:base/Nat";
+import Float "mo:base/Float";
 
 actor {
     type Result<A,B> = Result.Result<A,B>;
@@ -50,7 +51,7 @@ actor {
         icrc1_balance_of : shared (account: Account) -> async Nat;
         icrc1_mint: shared (account: Account, amount: Nat) -> async Result<(), Error>;
         icrc1_burn : shared (account: Account, amount: Nat) -> async Result<(), Error>;
-        icrc1_transfer: shared (from: Account, to: Account, amount: Nat)-> async Result<Bool, Error>; 
+        icrc1_transfer: shared (from: Account, to: Account, amount: Nat)-> async Result<(), Error>; 
     } = actor ("47tcn-laaaa-aaaas-aabeq-cai");
 
     let tdx : actor {
@@ -58,7 +59,7 @@ actor {
         icrc1_balance_of : shared (account: Account) -> async Nat;
         icrc1_mint: shared (account: Account, amount: Nat) -> async Result<(), Error>;
         icrc1_burn : shared (account: Account, amount: Nat) -> async Result<(), Error>;
-        icrc1_transfer: shared (from: Account, to: Account, amount: Nat)-> async Result<Bool, Error>; 
+        icrc1_transfer: shared (from: Account, to: Account, amount: Nat)-> async Result<(), Error>; 
     } = actor ("4ysez-gyaaa-aaaas-aabea-cai");
 
     let icp : actor {
@@ -120,6 +121,13 @@ actor {
         return await icp.icrc1_total_supply();
     };
 
+    public func icpSupplyToDisplay (): async Text {
+        let balance: Nat = await icp.icrc1_total_supply();
+        var no :Float= Float.fromInt(balance);
+        no := no/10000000;
+        return Float.toText(no) # " ICP";
+    };
+
     public func icpBalance (account: Account): async Nat {
         return await icp.icrc1_balance_of(account);
     };
@@ -132,12 +140,30 @@ actor {
         return await icp.icrc1_balance_of(userAccount);
     };
 
-    public func transferICP (transfer : TransferArg): async ICPResult {
+    public shared ({ caller }) func icpBalanceOfUserToDisplay (): async Text {
+        let userAccount : Account = {
+            owner = caller;
+            subaccount = null;
+        };
+        let balance: Nat = await icp.icrc1_balance_of(userAccount);
+        var no :Float= Float.fromInt(balance);
+        no := no/10000000;
+        return Float.toText(no) # " ICP";
+    };
+
+    func transferICP (transfer : TransferArg): async ICPResult {
         return await icp.icrc1_transfer(transfer);
     };
 
     public func tdnSupply (): async Nat {
         return await tdn.icrc1_total_supply();
+    };
+
+    public func tdnSupplyToDisplay (): async Text {
+        let balance: Nat = await tdn.icrc1_total_supply();
+        var no :Float= Float.fromInt(balance);
+        no := no/10000000;
+        return Float.toText(no) # " TDN";
     };
 
     public func tdnBalanceOfBackendAccount (): async Nat {
@@ -152,6 +178,17 @@ actor {
         return await tdn.icrc1_balance_of(userAccount);
     };
 
+     public shared ({ caller }) func tdnBalanceOfUserToDisplay (): async Text {
+        let userAccount : Account = {
+            owner = caller;
+            subaccount = null;
+        };
+        let balance: Nat = await tdn.icrc1_balance_of(userAccount);
+        var no :Float= Float.fromInt(balance);
+        no := no/10000000;
+        return Float.toText(no) # " TDN";
+    };
+
     public func tdnMint (amount: Nat): async Result<(), Error>{
         return await tdn.icrc1_mint(backendAccount, amount);
     };
@@ -160,12 +197,19 @@ actor {
         return await tdn.icrc1_burn(backendAccount, amount);
     };
 
-    public func tdnTransfer (to: Account, amount: Nat): async Result<Bool, Error>{
+    public func tdnTransfer (to: Account, amount: Nat): async Result<(), Error>{
         return await tdn.icrc1_transfer(backendAccount, to, amount);
     };
 
     public func tdxSupply (): async Nat {
         return await tdx.icrc1_total_supply();
+    };
+
+     public func tdxSupplyToDisplay (): async Text {
+        let balance: Nat = await tdx.icrc1_total_supply();
+        var no :Float= Float.fromInt(balance);
+        no := no/10000000;
+        return Float.toText(no) # " TDX";
     };
 
     public func tdxBalanceofBackendAccount (): async Nat {
@@ -180,6 +224,17 @@ actor {
         return await tdx.icrc1_balance_of(userAccount);
     };
 
+     public shared ({ caller }) func tdxBalanceOfUserToDisplay (): async Text {
+        let userAccount : Account = {
+            owner = caller;
+            subaccount = null;
+        };
+        let balance: Nat = await tdx.icrc1_balance_of(userAccount);
+        var no :Float= Float.fromInt(balance);
+        no := no/10000000;
+        return Float.toText(no) # " TDX";
+    };
+
     public func tdxMint (amount: Nat): async Result<(), Error>{
         return await tdx.icrc1_mint(backendAccount, amount);
     };
@@ -188,7 +243,7 @@ actor {
         return await tdx.icrc1_burn(backendAccount, amount);
     };
 
-    public func tdxTransfer (to: Account, amount: Nat): async Result<Bool, Error>{
+    public func tdxTransfer (to: Account, amount: Nat): async Result<(), Error>{
         return await tdx.icrc1_transfer(backendAccount, to, amount);
     };
 
@@ -198,9 +253,11 @@ actor {
             subaccount = null;
         };
         //Attempt to burn the tokens the user stakes
-        let transferFromUser = await tdn.icrc1_burn(userAccount, amount);
+        let transferFromUser = await tdn.icrc1_transfer(userAccount, backendAccount, amount);
+
         switch(transferFromUser){
             case(#ok ){
+            ignore await tdn.icrc1_burn(backendAccount, amount);
                 //assuming same value for all three tokens, TDN, TDX and ICP - otherwise you need to recieve the value of TDN compared to TDX and ICP so you know how much TDX to mint and how many ICP to send to the user 
                 ignore await tdx.icrc1_mint(backendAccount, amount);
                 //Returning the same number of TDX to the user as they staked - enabling it to become cyclical
@@ -208,14 +265,14 @@ actor {
                 //Creating transferArg for the transfer of ICP
                 let transfer : TransferArg = {
                     to = userAccount;
-                    fee = ?1000;
+                    fee = null;
                     memo = null;
                     from_subaccount = null;
                     created_at_time = null;
                     amount = Nat.div(amount, 10);
                 };
                 //To transfer ICP to the user
-                ignore await icp.icrc1_transfer(transfer);
+                ignore await transferICP(transfer);
                 //Calculating the amount of TDN to mint and then sell for ICP
                 var tdnAmountToMintAndTrade: Nat = switch(phase1){
                     case(true){Nat.div(Nat.mul(amount, phase1MintingPercentage), 100)};

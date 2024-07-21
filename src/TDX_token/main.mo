@@ -130,13 +130,7 @@ actor TideNeuronToken {
         }
     };
 
-    public shared({caller}) func icrc1_transfer(from: Account, to: Account, amount: Balance): async Result<Bool,Error> {
-        if(caller != from.owner){
-          return #err(#Unauthorized)
-        };
-        if(Principal.isAnonymous(to.owner)){
-            return #err(#InvalidAccount);
-        };
+    public func icrc1_transfer(from: Account, to: Account, amount: Balance): async Result<(),Error> {
         if(amount < 0 + tokenDetails.transfer_fee){
             return #err(#InvalidAmount);
         };
@@ -151,7 +145,7 @@ actor TideNeuronToken {
                     };
                     balances.put(from, newBalanceFrom);
                     balances.put(to, newBalanceTo);
-                    return #ok(true);
+                    return #ok();
                 } else {
                     return #err(#InsufficientBalance);
                 }
@@ -159,10 +153,7 @@ actor TideNeuronToken {
         }
     };
 
-    public shared({caller}) func icrc1_mint(account: Account, amount: Balance): async Result<(),Error> {
-        if(caller != mintingAccount.owner){
-          return #err(#Unauthorized);
-        };
+    public func icrc1_mint(account: Account, amount: Balance): async Result<(),Error> {
         if(amount < 0){
             return #err(#InvalidAmount);
         };
@@ -175,15 +166,9 @@ actor TideNeuronToken {
         return #ok();
     };
 
-    public shared({caller}) func icrc1_burn(account: Account, amount: Balance): async Result<(),Error> {
-        if(caller != account.owner){
-          return #err(#Unauthorized)
-        };
-        if(amount > 0 + tokenDetails.transfer_fee){
+    public func icrc1_burn(account: Account, amount: Balance): async Result<(),Error> {
+        if(amount < 0 + tokenDetails.transfer_fee){
             return #err(#InvalidAmount);
-        };
-        if(Principal.isAnonymous(account.owner)){
-            return #err(#InvalidAccount);
         };
 
         switch (balances.get(account)) {
