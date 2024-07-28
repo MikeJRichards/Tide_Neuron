@@ -4,16 +4,16 @@ import Nat "mo:base/Nat";
 import Text "mo:base/Text";
 import Hash "mo:base/Hash";
 import Result "mo:base/Result";
-//import Iter "mo:base/Iter";
 import Nat8 "mo:base/Nat8";
 
 
-actor TideNeuronToken {
+actor TideExchangeToken {
     type TokenDetails = {
         name: Text;
         symbol: Text;
         decimals : Nat8; 
         transfer_fee : Nat;
+        logo_url: Text;
     };
 
     var tokenDetails: TokenDetails = {
@@ -21,6 +21,7 @@ actor TideNeuronToken {
         symbol = "TDX";
         decimals = 8;
         transfer_fee = 10000;
+        logo_url = "https://5v4ax-jqaaa-aaaas-aabdq-cai.icp0.io/icon_logo_trans.png";
     };
 
     public type TokenArgs = {
@@ -83,8 +84,8 @@ actor TideNeuronToken {
         #InvalidAccount;
         #InvalidAmount;
     };
-    public type Value = { #Nat : Nat; #Int : Int; #Blob : Blob; #Text : Text };
 
+    public type Value = { #Nat : Nat; #Int : Int; #Blob : Blob; #Text : Text };
 
     public shared ({ caller }) func get_principal (): async Principal {
         return caller;
@@ -120,6 +121,7 @@ actor TideNeuronToken {
           ("icrc1:symbol", #Text(TDXToken.init.tokenDetails.symbol)),
           ("icrc1:decimals", #Nat(Nat8.toNat(TDXToken.init.tokenDetails.decimals))),
           ("icrc1:fee", #Nat(TDXToken.init.tokenDetails.transfer_fee)),
+          ("icrc1:logo", #Text(TDXToken.init.tokenDetails.logo_url))
         ];
     };
 

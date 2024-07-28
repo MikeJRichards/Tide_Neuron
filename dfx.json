@@ -12,6 +12,10 @@
       "main": "src/TDX_token/main.mo",
       "type": "motoko"
     },
+    "Swap_canister": {
+      "main": "src/swap/main.mo",
+      "type": "motoko"
+    },
     
     "TideNeuron_frontend": {
       "dependencies": [

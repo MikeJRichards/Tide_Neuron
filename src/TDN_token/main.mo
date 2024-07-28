@@ -4,7 +4,6 @@ import Nat "mo:base/Nat";
 import Text "mo:base/Text";
 import Hash "mo:base/Hash";
 import Result "mo:base/Result";
-//import Iter "mo:base/Iter";
 import Nat8 "mo:base/Nat8";
 
 actor TideNeuronToken {
@@ -13,6 +12,7 @@ actor TideNeuronToken {
         symbol: Text;
         decimals : Nat8; 
         transfer_fee : Nat;
+        logo_url: Text;
     };
 
     var tokenDetails: TokenDetails = {
@@ -20,6 +20,7 @@ actor TideNeuronToken {
         symbol = "TDN";
         decimals = 8;
         transfer_fee = 10000;
+        logo_url = "https://5v4ax-jqaaa-aaaas-aabdq-cai.icp0.io/icon_logo_trans.png";
     };
 
     public type TokenArgs = {
@@ -82,8 +83,8 @@ actor TideNeuronToken {
         #InvalidAccount;
         #InvalidAmount;
     };
-    public type Value = { #Nat : Nat; #Int : Int; #Blob : Blob; #Text : Text };
 
+    public type Value = { #Nat : Nat; #Int : Int; #Blob : Blob; #Text : Text };
 
     public shared ({ caller }) func get_principal (): async Principal {
         return caller;
@@ -114,13 +115,14 @@ actor TideNeuronToken {
     };
 
     public query func icrc1_metadata() : async [(Text, Value)] {
-    [
-      ("icrc1:name", #Text(TDNToken.init.tokenDetails.name)),
-      ("icrc1:symbol", #Text(TDNToken.init.tokenDetails.symbol)),
-      ("icrc1:decimals", #Nat(Nat8.toNat(TDNToken.init.tokenDetails.decimals))),
-      ("icrc1:fee", #Nat(TDNToken.init.tokenDetails.transfer_fee)),
-    ];
-  };
+        [
+          ("icrc1:name", #Text(TDNToken.init.tokenDetails.name)),
+          ("icrc1:symbol", #Text(TDNToken.init.tokenDetails.symbol)),
+          ("icrc1:decimals", #Nat(Nat8.toNat(TDNToken.init.tokenDetails.decimals))),
+          ("icrc1:fee", #Nat(TDNToken.init.tokenDetails.transfer_fee)),
+          ("icrc1:logo", #Text(TDNToken.init.tokenDetails.logo_url))
+        ];
+    };
 
     public func icrc1_balance_of(account: Account): async Nat {
         switch (balances.get(account)) {
